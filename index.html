@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+	<script src="./jquery-3.4.1.slim.min.js"></script>
+
+
+	<script type="text/javascript" src="./app.js"></script>
+	<script type="text/javascript" src="./registration.js"></script>
+	<script type="text/javascript" src="./login.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+	<title>Pacman by Adi and Yuval</title>
+	<link rel="icon" type="image" href="logo.png">
+	<link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Cantarell:i|Big+Shoulders+Text:400,500,600,700">
+</head>
+
+<body>
+	<header>
+			<div class="pacman">
+			<div class="pacman__eye"></div>
+			<div class="pacman__mouth"></div>
+		</div>
+			<img id="logo" src="logo.png">
+		<strong id="headtitle"> The Pacman game by Yuval Mor Yosef- 312475528 and Adi Ashkenazi- 206345241</strong>
+	</header>
+	<script>
+
+		$(document).ready(function () {
+			swapDiv('welcome');
+		});
+	</script>
+	
+	<div id="menu">
+		<button class="tablink" onclick="swapDiv('welcome')" type="button">welcome</button>
+		<button class="tablink" onclick="swapDiv('registration')" type="button">registration</button>
+		<button class="tablink" onclick="swapDiv('login')" type="button" >login</button>
+		<a class="tablink" href="#about" rel="modal:open" >about</a>
+
+	</div>
+	<div id="content">
+	
+		<div id="welcome" class="content">
+			<span ALIGN="center"> <b>Welcome to the pacman game!</b></span>
+			<br>
+			<br>
+			<img id="openImg" src="open.png">
+			<br>
+			<br>
+			<button onclick="swapDiv('registration')" id="regButton" class="btn" >Registration</button>
+			<br>
+			<br>
+			<button onclick="swapDiv('login')" id="loginButton" class="btn" >Login</button>
+
+		</div>
+
+		<div id="registration" class="content" style="display: none;">
+			<span> <b>Welcome to the registration page!</b></span>
+			<form class="cmxform" id="signupForm" name="signupForm" method="get" action="">
+				<fieldset>
+					<legend>Validating a complete form</legend>
+
+					<p>
+						<label for="username">Username</label>
+						<input id="username" name="username" type="text">
+					</p>
+					<p>
+						<label for="password">Password</label>
+						<input id="password" name="password" type="password">
+					</p>
+					<p>
+						<label for="firstname">First name</label>
+						<input id="firstname" name="firstname" type="text">
+					</p>
+					<p>
+						<label for="lastname">Last name</label>
+						<input id="lastname" name="lastname" type="text">
+					</p>
+					<p>
+						<label for="email">Email</label>
+						<input id="email" name="email" type="email">
+					</p>
+					<p>
+						<label for="date">Date of birth</label>
+						<input id="date" name="date" type="date">
+					</p>
+					<p>
+						<input class="submit" type="submit" value="Submit">
+					</p>
+				</fieldset>
+
+			</form>
+
+		</div>
+
+		<div id="login" class="content" style="display: none;">
+			<span> <b>Welcome to the login page!</b></span>
+			<form class="cmxform" id="loginForm" name="loginForm" method="get" action="">
+				<fieldset>
+					<legend>Log in:</legend>
+
+					<p>
+						<label for="username">Username</label>
+						<input id="username" name="username" type="username">
+					</p>
+					<p>
+						<label for="password">Password</label>
+						<input id="password" name="password" type="password">
+					</p>
+					<p>
+						<input class="submit" type="submit" value="Submit">
+					</p>
+				</fieldset>
+			</form>
+		</div>
+
+		<div id="settings" class="content" style="display: none;">
+			<span> <b>Welcome to the settings page!</b></span>
+			<form class="cmxform" id="settingsForm" name="settingsForm" method="get" action="">
+				<fieldset>
+					<legend>settings:</legend>
+
+					<p class="strow1">
+						<label for="up">up</label>
+						<input id="up" name="up" type="text" onkeydown="setUp()" autocomplete="off" placeholder="↑">
+					</p>
+					<p class="strow2">
+						<label for="left">left</label>
+						<input id="left" name="left" type="text" onkeydown="setLeft()" autocomplete="off" placeholder="←">
+					</p>
+					<p class="strow2">
+						<label for="right">right</label>
+						<input id="right" name="right" type="text" onkeydown="setRight()" autocomplete="off" placeholder="→">
+					</p>
+					<p class="strow3">
+						<label for="down">down</label>
+						<input id="down" name="down" type="text" onkeydown="setDown()" autocomplete="off" placeholder="↓">
+					</p>
+					<p class="strow4" >
+						<label for="fivepointsColor"> five points Color</label>
+						<input id="fivepointsColor" name="fivepointsColor" type="color" >
+					</p>
+					<p class="strow4">
+						<label for="fifteenpointsColor"> fifteen points Color</label>
+						<input id="fifteenpointsColor" name="fifteenpointsColor" type="color">
+					</p>
+					<p class="strow4">
+						<label for="twentyfivepointsColor"> twentyfive points Color</label>
+						<input id="twentyfivepointsColor" name="twentyfivepointsColor" type="color">
+					</p>
+
+					<label id="differentColors" style="display: none;"> all the colors need to be different from each
+						other</label>
+					<br>
+					<p class="strow5">
+						<label for="time">time fot the game (min 60 seconds)</label>
+						<input id="time" name="time" type="text">
+					</p>
+					<p class="strow5">
+						<label for="food">food (between 50 and 90)</label>
+						<input id="food" name="food" type="text">
+					</p>
+
+					<p class="strow5">
+						<label for="monsters">monsters amount (between 1 and 4)</label>
+						<input id="monsters" name="monsters" type="text">
+					</p>
+					<p id="randomp">
+					<button class="random" onclick="randomDetails()">Random</button>
+					<p>
+						<input class="submit" type="submit" value="Submit" onclick="submitFunc()">
+					</p>
+				</fieldset>
+			</form>
+		</div>
+
+		<div id="about" class="content" style="display: none;">
+			<span> <b>welcome to the about page!</b></span>
+			<p>This Packman game submmited by Yuval Mor Yosef and Adi Ashkenazi.</p>
+			<p>We used jquery modal by "AJAX" that helped us by using an existing DOM element and loading a page with
+				AJAX, we use jQuery Validation Plugin to validat the forms.	</p>
+			<p>Our difficulties in this project were understanding usage in jQuery in the beginning, and the design in the end.</p>
+			<a href="#" rel="modal:close">Close</a>
+		</div>
+		<div id="game" class="content" style="display: none;">
+		<div id="frame">
+			<div id="leftSide">
+				<table>
+					<td>
+						<tr>
+							<div id="score">
+								<label for="lblScore">SCORE:</label>
+								<input id="lblScore" type="text" />
+							</div>
+						</tr>
+						<tr>
+							<div id="times">
+								<label for="lblTime">TIME:</label>
+								<input id="lblTime" type="text" />
+							</div>
+						</tr>
+						<tr>
+							<div id="username">
+								<label for="lblUsername">Username:</label>
+								<input id="lblUsername" type="text" />
+							</div>
+						</tr>
+						<tr>
+							<div id="life">
+								<label for="lblLife">Life:</label>
+								<input id="lblLife" type="text" />
+							</div>
+						</tr>
+						<tr>
+							<div id="newgamediv">
+								<button id="newgame" onclick="newGame()" class="btnset">new Game</button>
+							</div>
+						</tr>
+						<tr>
+							<button id="playAudio" onclick="playAudio(pacmanSong)" class="btnset" type="button">Play Audio</button>
+						</tr>
+						<tr>	
+							<button id="pauseAudio" onclick="pauseAudio(pacmanSong)" class="btnset" type="button">Pause Audio</button>
+						</tr>
+					</td>
+				</table>
+			</div>
+
+			<audio id="myAudio">
+				<source src="pacmanSong.mp3" type="audio/mpeg">
+			</audio>
+
+			<audio id="crashAudio">
+				<source src="crashAudio.mp3" type="audio/mpeg">
+			</audio>
+			
+			<audio id="successAudio">
+				<source src="successAudio.m4a" type="audio/mpeg">
+			</audio>
+
+			<div id="rightSide">
+				<table>
+					<tr>
+						<td><label for="up">Up:</label>
+							<input id="lblup" type="text" /></td>
+						<td><label for="down">Down:</label>
+							<input id="lbldown" type="text" /></td>
+					</tr>
+					<tr>
+
+						<td><label for="left">Left:</label>
+							<input id="lblleft" type="text" /></td>
+						<td><label for="right">Right:</label>
+							<input id="lblright" type="text" /></td>
+					</tr>
+
+					<tr>
+						<td> <label for="foodAmount">food Amount:</label>
+							<input id="lblfoodAmount" type="text" /></td>
+
+						<td> <label for="lbltimesettings">total time:</label>
+							<input id="lbltimesettings" type="text" /></td>
+
+						<td> <label for="lblmonstersSettings">monsters amount:</label>
+							<input id="lblmonstersSettings" type="text" /></td>
+					</tr>
+					<tr>
+
+						<td> <label for="fivepointsColor">five points:</label>
+							<input id="lblfivepointsColor" type="text" /></td>
+						<td> <label for="fifteenpointsColor">fifteen points:</label>
+							<input id="lblfifteenpointsColor" type="text" /></td>
+						<td> <label for="twenyfivepointsColor">twenyfive points:</label>
+							<input class="colorChoose" id="lbltwenyfivepointsColor" type="text" /></td>
+
+					</tr>
+				</table>
+			</div>
+			<img id="myClockImage" src="sandClock.png" type="image/png" style="display: none;">
+			<img id="myExtraFiftyImage" src="extra50.png" type="image/jpg" style="display: none;">
+			<img id="myMedicineImage" src="circleMedicine.png" type="image" style="display: none;">
+			<img id="myMonsterImage" src="monsterImage.png" type="gif" style="display: none;">
+
+			<div id ="playGame">
+				<canvas id="canvas" height="600" width="600"></canvas>
+			</div>
+
+			<div id="modals">
+				<div id="lose" class="game" style="display: none;">
+					<span> <b>Loser!</b></span>
+					<a href="#" rel="modal:close">Close</a>
+				</div>
+
+				<div id="Winner" class="game" style="display: none;">
+					<span> <b>Winner!!!</b></span>
+					<a href="#" rel="modal:close">Close</a>
+				</div>
+
+				<div id="Better" class="game" style="display: none;">
+					<span id="bscore"></span>
+					<a href="#" rel="modal:close">Close</a>
+				</div>
+
+				
+				<div id="completed" class="game" style="display: none;">
+					<span> <b>Game completed</b></span>
+					<a href="#" rel="modal:close">Close</a>
+				</div>
+		</div>
+
+
+		</div>
+		</div>
+	</div>
+
+	<footer ALIGN="center">
+			This web was written in HTML5, css and javascript.
+			<strong><a href="mailto:yuvalmoryosef3@gmail.com">send mail to yuval</a></strong>
+			or
+			<strong><a href="mailto:adiashk@post.bgu.ac.il">send mail to adi</a></strong>
+<!-- 			<button class="tablink" onclick="swapDiv('settings')" type="button">settings</button>
+ -->	</footer>
+</body>
+
+</html>
